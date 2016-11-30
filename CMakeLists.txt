@@ -21,5 +21,6 @@ link_directories(
 
 add_subdirectory(common)
 add_subdirectory(test-common)
-add_subdirectory(cuda)
+
 add_subdirectory(openmp)
+add_subdirectory(openmpi)
