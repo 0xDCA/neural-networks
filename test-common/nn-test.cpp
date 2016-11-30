@@ -71,7 +71,7 @@ void test_single_output_neural_network_approx(const FeedforwardNeuralNetwork& ne
 	}
 }
 
-void run_common_nn_tests(const AbstractFeedforwardNeuralNetworkFactory& nn_factory) {
+void run_common_nn_tests(const AbstractFeedforwardNeuralNetworkFactory& nn_factory, const TrainSettings& base_train_settings) {
   SECTION("can set up weights manually") {
   	unique_ptr<FeedforwardNeuralNetwork> network(nn_factory.create_neural_network({2, 4, 1}));
 
@@ -262,15 +262,13 @@ void run_common_nn_tests(const AbstractFeedforwardNeuralNetworkFactory& nn_facto
   		std::random_device rd;
   		std::mt19937 generator(rd());
 
-  		TrainSettings train_settings;
+  		TrainSettings train_settings = base_train_settings;
   		train_settings.initialize_weights_randomly = true;
   		train_settings.inner_steps = 16;
   		train_settings.iterations = 2000;
   		train_settings.regularization_term = 0.0;
   		train_settings.momentum = 0.9;
   		train_settings.step_factor = 1.0;
-  		train_settings.threads = 1000;
-  		train_settings.blocks = 15;
   		train_settings.generator = &generator;
   		train_settings.random_epsilon = 10.0;
   		train_settings.target_error = 0.001;

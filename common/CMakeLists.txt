@@ -15,4 +15,6 @@ add_library(nn-common
   FeedforwardNeuralNetworkClassFactory.h
   runner-common.h
   runner-common.cpp
+  util.h
+  util.cpp
 )

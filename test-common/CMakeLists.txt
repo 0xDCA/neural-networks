@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5.1)
-project(nn-common)
+project(nn-test-common)
 
 add_library(nn-test-common
   ApproxMatrixMatcher.h

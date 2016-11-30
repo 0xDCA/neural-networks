@@ -3,6 +3,7 @@
 #include "CudaFeedforwardNeuralNetwork.h"
 #include "FeedforwardNeuralNetworkClassFactory.h"
 #include "ManagedMatrix.h"
+#include "TrainSettings.h"
 #include "nn-test.h"
 
 #include <vector>
@@ -57,5 +58,8 @@ TEST_CASE("calculates the error correctly on GPU", "[error]") {
 }
 
 TEST_CASE("passes neural network common tests", "[common]") {
-	run_common_nn_tests(FeedforwardNeuralNetworkClassFactory<CudaFeedforwardNeuralNetwork>());
+	TrainSettings base_settings;
+	base_settings.threads = 1000;
+	base_settings.blocks = 15;
+	run_common_nn_tests(FeedforwardNeuralNetworkClassFactory<CudaFeedforwardNeuralNetwork>(), base_settings);
 }
